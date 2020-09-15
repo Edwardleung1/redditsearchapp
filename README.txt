@@ -1,0 +1,1 @@
+We will build an app that will search articles using the Reddit API. We will be using vanilla ES6 along with the Parcel bundler and Bootstrap 4 for the UI.
