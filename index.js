@@ -33,10 +33,10 @@ searchForm.addEventListener("submit", (e) => {
     results.forEach((post) => {
       output += `
       <div class="card>
-        <img src="..." class="card-img-top" alt="...">
+        <img src="..." class="card-img-top" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">${post.title}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">${truncateText(post.selftext, 100)}</p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
@@ -74,4 +74,13 @@ function showMessage(message, className) {
   setTimeout(() => {
     document.querySelector(".alert").remove();
   }, 3000);
+}
+
+// Truncate Text
+function truncateText(text, limit) {
+  // making sure its end of a word " "
+  const shortened = text.indexOf(" ", limit);
+  // if it doesn't match a space it will return -1
+  if (shortened == -1) return text;
+  return text.substring(0, shortened);
 }

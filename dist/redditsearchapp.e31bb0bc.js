@@ -174,7 +174,7 @@ searchForm.addEventListener("submit", function (e) {
     var output = "<div class=\"card-columns\">"; // loop through posts
 
     results.forEach(function (post) {
-      output += "\n      <div class=\"card>\n        <img src=\"...\" class=\"card-img-top\" alt=\"...\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">".concat(post.title, "</h5>\n          <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n          <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n        </div>\n      </div>\n      ");
+      output += "\n      <div class=\"card>\n        <img src=\"...\" class=\"card-img-top\" alt=\"Card image cap\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">".concat(post.title, "</h5>\n          <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n          <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n        </div>\n      </div>\n      ");
     }); // add ending div
 
     output += "</div>"; // output card to UI
@@ -203,6 +203,15 @@ function showMessage(message, className) {
   setTimeout(function () {
     document.querySelector(".alert").remove();
   }, 3000);
+} // Truncate Text
+
+
+function truncateText(text, limit) {
+  // making sure its end of a word " "
+  var shortened = text.indexOf(" ", limit); // if it doesn't match a space it will return -1
+
+  if (shortened == -1) return text;
+  return text.substring(0, shortened);
 }
 },{"./redditapi":"redditapi.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
