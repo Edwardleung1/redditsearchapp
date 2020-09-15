@@ -26,7 +26,29 @@ searchForm.addEventListener("submit", (e) => {
   searchInput.value = "";
 
   // search Reddit, passing it to our reddit search function
-  reddit.search(searchTerm, searchLimit, sortBy);
+  reddit.search(searchTerm, searchLimit, sortBy).then((results) => {
+    // output results to UI
+    let output = `<div class="card-columns">`;
+    // loop through posts
+    results.forEach((post) => {
+      output += `
+      <div class="card>
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${post.title}</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      `;
+    });
+
+    // add ending div
+    output += "</div>";
+
+    // output card to UI
+    document.getElementById("results").innerHTML = output;
+  });
 
   // prevent form from submitting
   e.preventDefault();

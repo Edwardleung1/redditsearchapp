@@ -169,7 +169,18 @@ searchForm.addEventListener("submit", function (e) {
 
   searchInput.value = ""; // search Reddit, passing it to our reddit search function
 
-  _redditapi.default.search(searchTerm, searchLimit, sortBy); // prevent form from submitting
+  _redditapi.default.search(searchTerm, searchLimit, sortBy).then(function (results) {
+    // output results to UI
+    var output = "<div class=\"card-columns\">"; // loop through posts
+
+    results.forEach(function (post) {
+      output += "\n      <div class=\"card>\n        <img src=\"...\" class=\"card-img-top\" alt=\"...\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">".concat(post.title, "</h5>\n          <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n          <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n        </div>\n      </div>\n      ");
+    }); // add ending div
+
+    output += "</div>"; // output card to UI
+
+    document.getElementById("results").innerHTML = output;
+  }); // prevent form from submitting
 
 
   e.preventDefault();
