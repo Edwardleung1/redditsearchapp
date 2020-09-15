@@ -174,7 +174,9 @@ searchForm.addEventListener("submit", function (e) {
     var output = "<div class=\"card-columns\">"; // loop through posts
 
     results.forEach(function (post) {
-      output += "\n      <div class=\"card>\n        <img src=\"...\" class=\"card-img-top\" alt=\"Card image cap\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">".concat(post.title, "</h5>\n          <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n          <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n        </div>\n      </div>\n      ");
+      // check for image is available
+      var image = post.preview ? post.preview.images[0].source.url : "https://cdn.comparitech.com/wp-content/uploads/2017/08/reddit-1.jpg";
+      output += "\n      <div class=\"card>\n        <img class=\"card-img-top\" src=\"".concat(image, "\" alt=\"Card image cap\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">").concat(post.title, "</h5>\n          <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n          <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n        </div>\n      </div>\n      ");
     }); // add ending div
 
     output += "</div>"; // output card to UI
